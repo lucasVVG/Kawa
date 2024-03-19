@@ -1,0 +1,29 @@
+Dans l'élaboration de ce projet nous avons à ce jour réalisé les tâches suivantes :
+
+- nous avons complété l'implémentation de base comprenant la mise en place pour le langage : 
+    des instructions avec l'affichage (print), les conditions (if else),
+    et la boucle (while). Nous avons également la gestion (environnement)
+    et le typage de variable (int, bool, class), et en enfin la gestion des classes (attributs, méthode).
+
+- dans notre TypeChecker nous faisons les vérifications suivantes :
+    on fait attention de ne pas avoir d'erreur de typage,
+    on vérifie qu'on a n'utilise pas de variable non déclaré ou de class non déclaré, 
+    on ne peux pas faire d'appel à une méthode non existante,
+    on vérifie qu'on ne peut pas utiliser 'super' sur une class sans parents,
+    on ne peut pas faire d'appel à 'this' et 'super' dans le main,
+    quand on a cl.me (cl doit être une class et me une méthode ou un attribut),
+    on gere le comportements de l'extensions sur la visibilité (private, protected),
+    une méthode avec un type de retour Void ne peut pas avoir de return,
+    une méthode avec un type de retour non Void a forcément un return dans tout les chemins d'executions possibles,
+    si on fait un appel à un constructeur d'une méthode qui n'en a pas, on a une erreur Not_found,
+    on vérifie que si l'on fait un New d'une class, cette dernier doit bien existé.
+
+- Notre interprèteur nous permet d'executer le code,
+    en supposant que ce dernier soit bien typer.
+
+- En terme d'extensions nous avons ajouté :
+    les champs immuables (final), 
+    la visibilité (private, protected),
+    la déclaration en série (var int x, y, z;),
+    la déclaration avec valeur initiale (var int x = 1;),
+    le mot clé super (super.f(...)).

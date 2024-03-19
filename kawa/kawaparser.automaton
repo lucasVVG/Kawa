@@ -1,0 +1,2580 @@
+State 0:
+## Known stack suffix:
+##
+## LR(1) items:
+program' -> . program [ # ]
+## Transitions:
+-- On VAR shift to state 1
+-- On vardef shift to state 9
+-- On program shift to state 11
+-- On list(vardef) shift to state 12
+## Reductions:
+-- On MAIN CLASS
+--   reduce production list(vardef) ->
+
+State 1:
+## Known stack suffix:
+## VAR
+## LR(1) items:
+vardef -> VAR . typ IDENT SEMI [ WHILE VAR THIS RETURN PRINT NOT NEW MINUS MAIN LPAR INT IF IDENT END CLASS BOOL ]
+## Transitions:
+-- On TVOID shift to state 2
+-- On TINT shift to state 3
+-- On TBOOL shift to state 4
+-- On IDENT shift to state 5
+-- On typ shift to state 6
+## Reductions:
+
+State 2:
+## Known stack suffix:
+## TVOID
+## LR(1) items:
+typ -> TVOID . [ IDENT ]
+## Transitions:
+## Reductions:
+-- On IDENT
+--   reduce production typ -> TVOID
+
+State 3:
+## Known stack suffix:
+## TINT
+## LR(1) items:
+typ -> TINT . [ IDENT ]
+## Transitions:
+## Reductions:
+-- On IDENT
+--   reduce production typ -> TINT
+
+State 4:
+## Known stack suffix:
+## TBOOL
+## LR(1) items:
+typ -> TBOOL . [ IDENT ]
+## Transitions:
+## Reductions:
+-- On IDENT
+--   reduce production typ -> TBOOL
+
+State 5:
+## Known stack suffix:
+## IDENT
+## LR(1) items:
+typ -> IDENT . [ IDENT ]
+## Transitions:
+## Reductions:
+-- On IDENT
+--   reduce production typ -> IDENT
+
+State 6:
+## Known stack suffix:
+## VAR typ
+## LR(1) items:
+vardef -> VAR typ . IDENT SEMI [ WHILE VAR THIS RETURN PRINT NOT NEW MINUS MAIN LPAR INT IF IDENT END CLASS BOOL ]
+## Transitions:
+-- On IDENT shift to state 7
+## Reductions:
+
+State 7:
+## Known stack suffix:
+## VAR typ IDENT
+## LR(1) items:
+vardef -> VAR typ IDENT . SEMI [ WHILE VAR THIS RETURN PRINT NOT NEW MINUS MAIN LPAR INT IF IDENT END CLASS BOOL ]
+## Transitions:
+-- On SEMI shift to state 8
+## Reductions:
+
+State 8:
+## Known stack suffix:
+## VAR typ IDENT SEMI
+## LR(1) items:
+vardef -> VAR typ IDENT SEMI . [ WHILE VAR THIS RETURN PRINT NOT NEW MINUS MAIN LPAR INT IF IDENT END CLASS BOOL ]
+## Transitions:
+## Reductions:
+-- On WHILE VAR THIS RETURN PRINT NOT NEW MINUS MAIN LPAR INT IF IDENT END CLASS BOOL
+--   reduce production vardef -> VAR typ IDENT SEMI
+
+State 9:
+## Known stack suffix:
+## vardef
+## LR(1) items:
+list(vardef) -> vardef . list(vardef) [ WHILE THIS RETURN PRINT NOT NEW MINUS MAIN LPAR INT IF IDENT END CLASS BOOL ]
+## Transitions:
+-- On VAR shift to state 1
+-- On vardef shift to state 9
+-- On list(vardef) shift to state 10
+## Reductions:
+-- On WHILE THIS RETURN PRINT NOT NEW MINUS MAIN LPAR INT IF IDENT END CLASS BOOL
+--   reduce production list(vardef) ->
+
+State 10:
+## Known stack suffix:
+## vardef list(vardef)
+## LR(1) items:
+list(vardef) -> vardef list(vardef) . [ WHILE THIS RETURN PRINT NOT NEW MINUS MAIN LPAR INT IF IDENT END CLASS BOOL ]
+## Transitions:
+## Reductions:
+-- On WHILE THIS RETURN PRINT NOT NEW MINUS MAIN LPAR INT IF IDENT END CLASS BOOL
+--   reduce production list(vardef) -> vardef list(vardef)
+
+State 11:
+## Known stack suffix:
+## program
+## LR(1) items:
+program' -> program . [ # ]
+## Transitions:
+## Reductions:
+-- On #
+--   accept program
+
+State 12:
+## Known stack suffix:
+## list(vardef)
+## LR(1) items:
+program -> list(vardef) . list(classdef) MAIN BEGIN list(instruction) END EOF [ # ]
+## Transitions:
+-- On CLASS shift to state 13
+-- On list(classdef) shift to state 158
+-- On classdef shift to state 164
+## Reductions:
+-- On MAIN
+--   reduce production list(classdef) ->
+
+State 13:
+## Known stack suffix:
+## CLASS
+## LR(1) items:
+classdef -> CLASS . IDENT BEGIN list(metatt) END [ MAIN CLASS ]
+classdef -> CLASS . IDENT EXT IDENT BEGIN list(metatt) END [ MAIN CLASS ]
+## Transitions:
+-- On IDENT shift to state 14
+## Reductions:
+
+State 14:
+## Known stack suffix:
+## CLASS IDENT
+## LR(1) items:
+classdef -> CLASS IDENT . BEGIN list(metatt) END [ MAIN CLASS ]
+classdef -> CLASS IDENT . EXT IDENT BEGIN list(metatt) END [ MAIN CLASS ]
+## Transitions:
+-- On EXT shift to state 15
+-- On BEGIN shift to state 155
+## Reductions:
+
+State 15:
+## Known stack suffix:
+## CLASS IDENT EXT
+## LR(1) items:
+classdef -> CLASS IDENT EXT . IDENT BEGIN list(metatt) END [ MAIN CLASS ]
+## Transitions:
+-- On IDENT shift to state 16
+## Reductions:
+
+State 16:
+## Known stack suffix:
+## CLASS IDENT EXT IDENT
+## LR(1) items:
+classdef -> CLASS IDENT EXT IDENT . BEGIN list(metatt) END [ MAIN CLASS ]
+## Transitions:
+-- On BEGIN shift to state 17
+## Reductions:
+
+State 17:
+## Known stack suffix:
+## CLASS IDENT EXT IDENT BEGIN
+## LR(1) items:
+classdef -> CLASS IDENT EXT IDENT BEGIN . list(metatt) END [ MAIN CLASS ]
+## Transitions:
+-- On PUBLIC shift to state 18
+-- On PROTECTED shift to state 19
+-- On PRIVATE shift to state 20
+-- On MET shift to state 21
+-- On ATT shift to state 122
+-- On method_ shift to state 130
+-- On metatt shift to state 131
+-- On list(metatt) shift to state 153
+-- On attribute shift to state 133
+-- On access shift to state 134
+## Reductions:
+-- On END
+--   reduce production list(metatt) ->
+
+State 18:
+## Known stack suffix:
+## PUBLIC
+## LR(1) items:
+access -> PUBLIC . [ MET ATT ]
+## Transitions:
+## Reductions:
+-- On MET ATT
+--   reduce production access -> PUBLIC
+
+State 19:
+## Known stack suffix:
+## PROTECTED
+## LR(1) items:
+access -> PROTECTED . [ MET ATT ]
+## Transitions:
+## Reductions:
+-- On MET ATT
+--   reduce production access -> PROTECTED
+
+State 20:
+## Known stack suffix:
+## PRIVATE
+## LR(1) items:
+access -> PRIVATE . [ MET ATT ]
+## Transitions:
+## Reductions:
+-- On MET ATT
+--   reduce production access -> PRIVATE
+
+State 21:
+## Known stack suffix:
+## MET
+## LR(1) items:
+method_ -> MET . typ IDENT LPAR loption(separated_nonempty_list(COMMA,typed_id)) RPAR BEGIN list(vardef) list(instruction) END [ PUBLIC PROTECTED PRIVATE MET END ATT ]
+## Transitions:
+-- On TVOID shift to state 2
+-- On TINT shift to state 3
+-- On TBOOL shift to state 4
+-- On IDENT shift to state 5
+-- On typ shift to state 22
+## Reductions:
+
+State 22:
+## Known stack suffix:
+## MET typ
+## LR(1) items:
+method_ -> MET typ . IDENT LPAR loption(separated_nonempty_list(COMMA,typed_id)) RPAR BEGIN list(vardef) list(instruction) END [ PUBLIC PROTECTED PRIVATE MET END ATT ]
+## Transitions:
+-- On IDENT shift to state 23
+## Reductions:
+
+State 23:
+## Known stack suffix:
+## MET typ IDENT
+## LR(1) items:
+method_ -> MET typ IDENT . LPAR loption(separated_nonempty_list(COMMA,typed_id)) RPAR BEGIN list(vardef) list(instruction) END [ PUBLIC PROTECTED PRIVATE MET END ATT ]
+## Transitions:
+-- On LPAR shift to state 24
+## Reductions:
+
+State 24:
+## Known stack suffix:
+## MET typ IDENT LPAR
+## LR(1) items:
+method_ -> MET typ IDENT LPAR . loption(separated_nonempty_list(COMMA,typed_id)) RPAR BEGIN list(vardef) list(instruction) END [ PUBLIC PROTECTED PRIVATE MET END ATT ]
+## Transitions:
+-- On TVOID shift to state 2
+-- On TINT shift to state 3
+-- On TBOOL shift to state 4
+-- On IDENT shift to state 5
+-- On typed_id shift to state 25
+-- On typ shift to state 27
+-- On separated_nonempty_list(COMMA,typed_id) shift to state 30
+-- On loption(separated_nonempty_list(COMMA,typed_id)) shift to state 31
+## Reductions:
+-- On RPAR
+--   reduce production loption(separated_nonempty_list(COMMA,typed_id)) ->
+
+State 25:
+## Known stack suffix:
+## typed_id
+## LR(1) items:
+separated_nonempty_list(COMMA,typed_id) -> typed_id . [ RPAR ]
+separated_nonempty_list(COMMA,typed_id) -> typed_id . COMMA separated_nonempty_list(COMMA,typed_id) [ RPAR ]
+## Transitions:
+-- On COMMA shift to state 26
+## Reductions:
+-- On RPAR
+--   reduce production separated_nonempty_list(COMMA,typed_id) -> typed_id
+
+State 26:
+## Known stack suffix:
+## typed_id COMMA
+## LR(1) items:
+separated_nonempty_list(COMMA,typed_id) -> typed_id COMMA . separated_nonempty_list(COMMA,typed_id) [ RPAR ]
+## Transitions:
+-- On TVOID shift to state 2
+-- On TINT shift to state 3
+-- On TBOOL shift to state 4
+-- On IDENT shift to state 5
+-- On typed_id shift to state 25
+-- On typ shift to state 27
+-- On separated_nonempty_list(COMMA,typed_id) shift to state 29
+## Reductions:
+
+State 27:
+## Known stack suffix:
+## typ
+## LR(1) items:
+typed_id -> typ . IDENT [ RPAR COMMA ]
+## Transitions:
+-- On IDENT shift to state 28
+## Reductions:
+
+State 28:
+## Known stack suffix:
+## typ IDENT
+## LR(1) items:
+typed_id -> typ IDENT . [ RPAR COMMA ]
+## Transitions:
+## Reductions:
+-- On RPAR COMMA
+--   reduce production typed_id -> typ IDENT
+
+State 29:
+## Known stack suffix:
+## typed_id COMMA separated_nonempty_list(COMMA,typed_id)
+## LR(1) items:
+separated_nonempty_list(COMMA,typed_id) -> typed_id COMMA separated_nonempty_list(COMMA,typed_id) . [ RPAR ]
+## Transitions:
+## Reductions:
+-- On RPAR
+--   reduce production separated_nonempty_list(COMMA,typed_id) -> typed_id COMMA separated_nonempty_list(COMMA,typed_id)
+
+State 30:
+## Known stack suffix:
+## separated_nonempty_list(COMMA,typed_id)
+## LR(1) items:
+loption(separated_nonempty_list(COMMA,typed_id)) -> separated_nonempty_list(COMMA,typed_id) . [ RPAR ]
+## Transitions:
+## Reductions:
+-- On RPAR
+--   reduce production loption(separated_nonempty_list(COMMA,typed_id)) -> separated_nonempty_list(COMMA,typed_id)
+
+State 31:
+## Known stack suffix:
+## MET typ IDENT LPAR loption(separated_nonempty_list(COMMA,typed_id))
+## LR(1) items:
+method_ -> MET typ IDENT LPAR loption(separated_nonempty_list(COMMA,typed_id)) . RPAR BEGIN list(vardef) list(instruction) END [ PUBLIC PROTECTED PRIVATE MET END ATT ]
+## Transitions:
+-- On RPAR shift to state 32
+## Reductions:
+
+State 32:
+## Known stack suffix:
+## MET typ IDENT LPAR loption(separated_nonempty_list(COMMA,typed_id)) RPAR
+## LR(1) items:
+method_ -> MET typ IDENT LPAR loption(separated_nonempty_list(COMMA,typed_id)) RPAR . BEGIN list(vardef) list(instruction) END [ PUBLIC PROTECTED PRIVATE MET END ATT ]
+## Transitions:
+-- On BEGIN shift to state 33
+## Reductions:
+
+State 33:
+## Known stack suffix:
+## MET typ IDENT LPAR loption(separated_nonempty_list(COMMA,typed_id)) RPAR BEGIN
+## LR(1) items:
+method_ -> MET typ IDENT LPAR loption(separated_nonempty_list(COMMA,typed_id)) RPAR BEGIN . list(vardef) list(instruction) END [ PUBLIC PROTECTED PRIVATE MET END ATT ]
+## Transitions:
+-- On VAR shift to state 1
+-- On vardef shift to state 9
+-- On list(vardef) shift to state 34
+## Reductions:
+-- On WHILE THIS RETURN PRINT NOT NEW MINUS LPAR INT IF IDENT END BOOL
+--   reduce production list(vardef) ->
+
+State 34:
+## Known stack suffix:
+## MET typ IDENT LPAR loption(separated_nonempty_list(COMMA,typed_id)) RPAR BEGIN list(vardef)
+## LR(1) items:
+method_ -> MET typ IDENT LPAR loption(separated_nonempty_list(COMMA,typed_id)) RPAR BEGIN list(vardef) . list(instruction) END [ PUBLIC PROTECTED PRIVATE MET END ATT ]
+## Transitions:
+-- On WHILE shift to state 35
+-- On THIS shift to state 37
+-- On RETURN shift to state 92
+-- On PRINT shift to state 95
+-- On NOT shift to state 38
+-- On NEW shift to state 39
+-- On MINUS shift to state 42
+-- On LPAR shift to state 43
+-- On INT shift to state 44
+-- On IF shift to state 100
+-- On IDENT shift to state 45
+-- On BOOL shift to state 46
+-- On mem shift to state 105
+-- On list(instruction) shift to state 120
+-- On instruction shift to state 115
+-- On expression shift to state 117
+## Reductions:
+-- On END
+--   reduce production list(instruction) ->
+
+State 35:
+## Known stack suffix:
+## WHILE
+## LR(1) items:
+instruction -> WHILE . LPAR expression RPAR BEGIN list(instruction) END [ WHILE THIS RETURN PRINT NOT NEW MINUS LPAR INT IF IDENT END BOOL ]
+## Transitions:
+-- On LPAR shift to state 36
+## Reductions:
+
+State 36:
+## Known stack suffix:
+## WHILE LPAR
+## LR(1) items:
+instruction -> WHILE LPAR . expression RPAR BEGIN list(instruction) END [ WHILE THIS RETURN PRINT NOT NEW MINUS LPAR INT IF IDENT END BOOL ]
+## Transitions:
+-- On THIS shift to state 37
+-- On NOT shift to state 38
+-- On NEW shift to state 39
+-- On MINUS shift to state 42
+-- On LPAR shift to state 43
+-- On INT shift to state 44
+-- On IDENT shift to state 45
+-- On BOOL shift to state 46
+-- On mem shift to state 47
+-- On expression shift to state 89
+## Reductions:
+
+State 37:
+## Known stack suffix:
+## THIS
+## LR(1) items:
+expression -> THIS . [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+## Transitions:
+## Reductions:
+-- On SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND
+--   reduce production expression -> THIS
+
+State 38:
+## Known stack suffix:
+## NOT
+## LR(1) items:
+expression -> NOT . expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+## Transitions:
+-- On THIS shift to state 37
+-- On NOT shift to state 38
+-- On NEW shift to state 39
+-- On MINUS shift to state 42
+-- On LPAR shift to state 43
+-- On INT shift to state 44
+-- On IDENT shift to state 45
+-- On BOOL shift to state 46
+-- On mem shift to state 47
+-- On expression shift to state 88
+## Reductions:
+
+State 39:
+## Known stack suffix:
+## NEW
+## LR(1) items:
+expression -> NEW . IDENT LPAR loption(separated_nonempty_list(COMMA,expression)) RPAR [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> NEW . IDENT [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+## Transitions:
+-- On IDENT shift to state 40
+## Reductions:
+
+State 40:
+## Known stack suffix:
+## NEW IDENT
+## LR(1) items:
+expression -> NEW IDENT . LPAR loption(separated_nonempty_list(COMMA,expression)) RPAR [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> NEW IDENT . [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+## Transitions:
+-- On LPAR shift to state 41
+## Reductions:
+-- On SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND
+--   reduce production expression -> NEW IDENT
+
+State 41:
+## Known stack suffix:
+## NEW IDENT LPAR
+## LR(1) items:
+expression -> NEW IDENT LPAR . loption(separated_nonempty_list(COMMA,expression)) RPAR [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+## Transitions:
+-- On THIS shift to state 37
+-- On NOT shift to state 38
+-- On NEW shift to state 39
+-- On MINUS shift to state 42
+-- On LPAR shift to state 43
+-- On INT shift to state 44
+-- On IDENT shift to state 45
+-- On BOOL shift to state 46
+-- On separated_nonempty_list(COMMA,expression) shift to state 54
+-- On mem shift to state 47
+-- On loption(separated_nonempty_list(COMMA,expression)) shift to state 86
+-- On expression shift to state 57
+## Reductions:
+-- On RPAR
+--   reduce production loption(separated_nonempty_list(COMMA,expression)) ->
+
+State 42:
+## Known stack suffix:
+## MINUS
+## LR(1) items:
+expression -> MINUS . expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+## Transitions:
+-- On THIS shift to state 37
+-- On NOT shift to state 38
+-- On NEW shift to state 39
+-- On MINUS shift to state 42
+-- On LPAR shift to state 43
+-- On INT shift to state 44
+-- On IDENT shift to state 45
+-- On BOOL shift to state 46
+-- On mem shift to state 47
+-- On expression shift to state 85
+## Reductions:
+
+State 43:
+## Known stack suffix:
+## LPAR
+## LR(1) items:
+expression -> LPAR . expression RPAR [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+## Transitions:
+-- On THIS shift to state 37
+-- On NOT shift to state 38
+-- On NEW shift to state 39
+-- On MINUS shift to state 42
+-- On LPAR shift to state 43
+-- On INT shift to state 44
+-- On IDENT shift to state 45
+-- On BOOL shift to state 46
+-- On mem shift to state 47
+-- On expression shift to state 48
+## Reductions:
+
+State 44:
+## Known stack suffix:
+## INT
+## LR(1) items:
+expression -> INT . [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+## Transitions:
+## Reductions:
+-- On SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND
+--   reduce production expression -> INT
+
+State 45:
+## Known stack suffix:
+## IDENT
+## LR(1) items:
+mem -> IDENT . [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND AFF ]
+## Transitions:
+## Reductions:
+-- On SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND AFF
+--   reduce production mem -> IDENT
+
+State 46:
+## Known stack suffix:
+## BOOL
+## LR(1) items:
+expression -> BOOL . [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+## Transitions:
+## Reductions:
+-- On SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND
+--   reduce production expression -> BOOL
+
+State 47:
+## Known stack suffix:
+## mem
+## LR(1) items:
+expression -> mem . [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+## Transitions:
+## Reductions:
+-- On SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND
+--   reduce production expression -> mem
+
+State 48:
+## Known stack suffix:
+## LPAR expression
+## LR(1) items:
+expression -> LPAR expression . RPAR [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . PLUS expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . MINUS expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . STAR expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . DIF expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . EQ expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . INF expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . INFE expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . SUP expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . SUPE expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . AND expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . OR expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . MOD expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . DIV expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . DOT IDENT LPAR loption(separated_nonempty_list(COMMA,expression)) RPAR [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+mem -> expression . DOT IDENT [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+## Transitions:
+-- On SUPE shift to state 49
+-- On SUP shift to state 58
+-- On STAR shift to state 60
+-- On RPAR shift to state 84
+-- On PLUS shift to state 66
+-- On OR shift to state 72
+-- On MOD shift to state 68
+-- On MINUS shift to state 74
+-- On INFE shift to state 62
+-- On INF shift to state 64
+-- On EQ shift to state 76
+-- On DOT shift to state 51
+-- On DIV shift to state 70
+-- On DIF shift to state 78
+-- On AND shift to state 80
+## Reductions:
+
+State 49:
+## Known stack suffix:
+## expression SUPE
+## LR(1) items:
+expression -> expression SUPE . expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+## Transitions:
+-- On THIS shift to state 37
+-- On NOT shift to state 38
+-- On NEW shift to state 39
+-- On MINUS shift to state 42
+-- On LPAR shift to state 43
+-- On INT shift to state 44
+-- On IDENT shift to state 45
+-- On BOOL shift to state 46
+-- On mem shift to state 47
+-- On expression shift to state 50
+## Reductions:
+
+State 50:
+## Known stack suffix:
+## expression SUPE expression
+## LR(1) items:
+expression -> expression . PLUS expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . MINUS expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . STAR expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DIF expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . EQ expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . INF expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . INFE expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . SUP expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . SUPE expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression SUPE expression . [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . AND expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . OR expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . MOD expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DIV expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DOT IDENT LPAR loption(separated_nonempty_list(COMMA,expression)) RPAR [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+mem -> expression . DOT IDENT [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+## Transitions:
+-- On DOT shift to state 51
+## Reductions:
+-- On STAR SEMI RPAR PLUS OR MOD MINUS EQ DIV DIF COMMA AND
+--   reduce production expression -> expression SUPE expression
+
+State 51:
+## Known stack suffix:
+## expression DOT
+## LR(1) items:
+expression -> expression DOT . IDENT LPAR loption(separated_nonempty_list(COMMA,expression)) RPAR [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+mem -> expression DOT . IDENT [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND AFF ]
+## Transitions:
+-- On IDENT shift to state 52
+## Reductions:
+
+State 52:
+## Known stack suffix:
+## expression DOT IDENT
+## LR(1) items:
+expression -> expression DOT IDENT . LPAR loption(separated_nonempty_list(COMMA,expression)) RPAR [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+mem -> expression DOT IDENT . [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND AFF ]
+## Transitions:
+-- On LPAR shift to state 53
+## Reductions:
+-- On SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND AFF
+--   reduce production mem -> expression DOT IDENT
+
+State 53:
+## Known stack suffix:
+## expression DOT IDENT LPAR
+## LR(1) items:
+expression -> expression DOT IDENT LPAR . loption(separated_nonempty_list(COMMA,expression)) RPAR [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+## Transitions:
+-- On THIS shift to state 37
+-- On NOT shift to state 38
+-- On NEW shift to state 39
+-- On MINUS shift to state 42
+-- On LPAR shift to state 43
+-- On INT shift to state 44
+-- On IDENT shift to state 45
+-- On BOOL shift to state 46
+-- On separated_nonempty_list(COMMA,expression) shift to state 54
+-- On mem shift to state 47
+-- On loption(separated_nonempty_list(COMMA,expression)) shift to state 55
+-- On expression shift to state 57
+## Reductions:
+-- On RPAR
+--   reduce production loption(separated_nonempty_list(COMMA,expression)) ->
+
+State 54:
+## Known stack suffix:
+## separated_nonempty_list(COMMA,expression)
+## LR(1) items:
+loption(separated_nonempty_list(COMMA,expression)) -> separated_nonempty_list(COMMA,expression) . [ RPAR ]
+## Transitions:
+## Reductions:
+-- On RPAR
+--   reduce production loption(separated_nonempty_list(COMMA,expression)) -> separated_nonempty_list(COMMA,expression)
+
+State 55:
+## Known stack suffix:
+## expression DOT IDENT LPAR loption(separated_nonempty_list(COMMA,expression))
+## LR(1) items:
+expression -> expression DOT IDENT LPAR loption(separated_nonempty_list(COMMA,expression)) . RPAR [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+## Transitions:
+-- On RPAR shift to state 56
+## Reductions:
+
+State 56:
+## Known stack suffix:
+## expression DOT IDENT LPAR loption(separated_nonempty_list(COMMA,expression)) RPAR
+## LR(1) items:
+expression -> expression DOT IDENT LPAR loption(separated_nonempty_list(COMMA,expression)) RPAR . [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+## Transitions:
+## Reductions:
+-- On SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND
+--   reduce production expression -> expression DOT IDENT LPAR loption(separated_nonempty_list(COMMA,expression)) RPAR
+
+State 57:
+## Known stack suffix:
+## expression
+## LR(1) items:
+expression -> expression . PLUS expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . MINUS expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . STAR expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DIF expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . EQ expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . INF expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . INFE expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . SUP expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . SUPE expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . AND expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . OR expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . MOD expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DIV expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DOT IDENT LPAR loption(separated_nonempty_list(COMMA,expression)) RPAR [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+mem -> expression . DOT IDENT [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+separated_nonempty_list(COMMA,expression) -> expression . [ RPAR ]
+separated_nonempty_list(COMMA,expression) -> expression . COMMA separated_nonempty_list(COMMA,expression) [ RPAR ]
+## Transitions:
+-- On SUPE shift to state 49
+-- On SUP shift to state 58
+-- On STAR shift to state 60
+-- On PLUS shift to state 66
+-- On OR shift to state 72
+-- On MOD shift to state 68
+-- On MINUS shift to state 74
+-- On INFE shift to state 62
+-- On INF shift to state 64
+-- On EQ shift to state 76
+-- On DOT shift to state 51
+-- On DIV shift to state 70
+-- On DIF shift to state 78
+-- On COMMA shift to state 82
+-- On AND shift to state 80
+## Reductions:
+-- On RPAR
+--   reduce production separated_nonempty_list(COMMA,expression) -> expression
+
+State 58:
+## Known stack suffix:
+## expression SUP
+## LR(1) items:
+expression -> expression SUP . expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+## Transitions:
+-- On THIS shift to state 37
+-- On NOT shift to state 38
+-- On NEW shift to state 39
+-- On MINUS shift to state 42
+-- On LPAR shift to state 43
+-- On INT shift to state 44
+-- On IDENT shift to state 45
+-- On BOOL shift to state 46
+-- On mem shift to state 47
+-- On expression shift to state 59
+## Reductions:
+
+State 59:
+## Known stack suffix:
+## expression SUP expression
+## LR(1) items:
+expression -> expression . PLUS expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . MINUS expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . STAR expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DIF expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . EQ expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . INF expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . INFE expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . SUP expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression SUP expression . [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . SUPE expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . AND expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . OR expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . MOD expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DIV expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DOT IDENT LPAR loption(separated_nonempty_list(COMMA,expression)) RPAR [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+mem -> expression . DOT IDENT [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+## Transitions:
+-- On DOT shift to state 51
+## Reductions:
+-- On STAR SEMI RPAR PLUS OR MOD MINUS EQ DIV DIF COMMA AND
+--   reduce production expression -> expression SUP expression
+
+State 60:
+## Known stack suffix:
+## expression STAR
+## LR(1) items:
+expression -> expression STAR . expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+## Transitions:
+-- On THIS shift to state 37
+-- On NOT shift to state 38
+-- On NEW shift to state 39
+-- On MINUS shift to state 42
+-- On LPAR shift to state 43
+-- On INT shift to state 44
+-- On IDENT shift to state 45
+-- On BOOL shift to state 46
+-- On mem shift to state 47
+-- On expression shift to state 61
+## Reductions:
+
+State 61:
+## Known stack suffix:
+## expression STAR expression
+## LR(1) items:
+expression -> expression . PLUS expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . MINUS expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . STAR expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression STAR expression . [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DIF expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . EQ expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . INF expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . INFE expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . SUP expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . SUPE expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . AND expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . OR expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . MOD expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DIV expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DOT IDENT LPAR loption(separated_nonempty_list(COMMA,expression)) RPAR [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+mem -> expression . DOT IDENT [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+## Transitions:
+-- On SUPE shift to state 49
+-- On SUP shift to state 58
+-- On INFE shift to state 62
+-- On INF shift to state 64
+-- On DOT shift to state 51
+## Reductions:
+-- On STAR SEMI RPAR PLUS OR MOD MINUS EQ DIV DIF COMMA AND
+--   reduce production expression -> expression STAR expression
+
+State 62:
+## Known stack suffix:
+## expression INFE
+## LR(1) items:
+expression -> expression INFE . expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+## Transitions:
+-- On THIS shift to state 37
+-- On NOT shift to state 38
+-- On NEW shift to state 39
+-- On MINUS shift to state 42
+-- On LPAR shift to state 43
+-- On INT shift to state 44
+-- On IDENT shift to state 45
+-- On BOOL shift to state 46
+-- On mem shift to state 47
+-- On expression shift to state 63
+## Reductions:
+
+State 63:
+## Known stack suffix:
+## expression INFE expression
+## LR(1) items:
+expression -> expression . PLUS expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . MINUS expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . STAR expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DIF expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . EQ expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . INF expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . INFE expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression INFE expression . [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . SUP expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . SUPE expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . AND expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . OR expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . MOD expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DIV expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DOT IDENT LPAR loption(separated_nonempty_list(COMMA,expression)) RPAR [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+mem -> expression . DOT IDENT [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+## Transitions:
+-- On DOT shift to state 51
+## Reductions:
+-- On STAR SEMI RPAR PLUS OR MOD MINUS EQ DIV DIF COMMA AND
+--   reduce production expression -> expression INFE expression
+
+State 64:
+## Known stack suffix:
+## expression INF
+## LR(1) items:
+expression -> expression INF . expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+## Transitions:
+-- On THIS shift to state 37
+-- On NOT shift to state 38
+-- On NEW shift to state 39
+-- On MINUS shift to state 42
+-- On LPAR shift to state 43
+-- On INT shift to state 44
+-- On IDENT shift to state 45
+-- On BOOL shift to state 46
+-- On mem shift to state 47
+-- On expression shift to state 65
+## Reductions:
+
+State 65:
+## Known stack suffix:
+## expression INF expression
+## LR(1) items:
+expression -> expression . PLUS expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . MINUS expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . STAR expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DIF expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . EQ expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . INF expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression INF expression . [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . INFE expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . SUP expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . SUPE expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . AND expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . OR expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . MOD expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DIV expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DOT IDENT LPAR loption(separated_nonempty_list(COMMA,expression)) RPAR [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+mem -> expression . DOT IDENT [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+## Transitions:
+-- On DOT shift to state 51
+## Reductions:
+-- On STAR SEMI RPAR PLUS OR MOD MINUS EQ DIV DIF COMMA AND
+--   reduce production expression -> expression INF expression
+
+State 66:
+## Known stack suffix:
+## expression PLUS
+## LR(1) items:
+expression -> expression PLUS . expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+## Transitions:
+-- On THIS shift to state 37
+-- On NOT shift to state 38
+-- On NEW shift to state 39
+-- On MINUS shift to state 42
+-- On LPAR shift to state 43
+-- On INT shift to state 44
+-- On IDENT shift to state 45
+-- On BOOL shift to state 46
+-- On mem shift to state 47
+-- On expression shift to state 67
+## Reductions:
+
+State 67:
+## Known stack suffix:
+## expression PLUS expression
+## LR(1) items:
+expression -> expression . PLUS expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression PLUS expression . [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . MINUS expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . STAR expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DIF expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . EQ expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . INF expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . INFE expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . SUP expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . SUPE expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . AND expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . OR expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . MOD expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DIV expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DOT IDENT LPAR loption(separated_nonempty_list(COMMA,expression)) RPAR [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+mem -> expression . DOT IDENT [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+## Transitions:
+-- On SUPE shift to state 49
+-- On SUP shift to state 58
+-- On STAR shift to state 60
+-- On MOD shift to state 68
+-- On INFE shift to state 62
+-- On INF shift to state 64
+-- On DOT shift to state 51
+-- On DIV shift to state 70
+## Reductions:
+-- On SEMI RPAR PLUS OR MINUS EQ DIF COMMA AND
+--   reduce production expression -> expression PLUS expression
+
+State 68:
+## Known stack suffix:
+## expression MOD
+## LR(1) items:
+expression -> expression MOD . expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+## Transitions:
+-- On THIS shift to state 37
+-- On NOT shift to state 38
+-- On NEW shift to state 39
+-- On MINUS shift to state 42
+-- On LPAR shift to state 43
+-- On INT shift to state 44
+-- On IDENT shift to state 45
+-- On BOOL shift to state 46
+-- On mem shift to state 47
+-- On expression shift to state 69
+## Reductions:
+
+State 69:
+## Known stack suffix:
+## expression MOD expression
+## LR(1) items:
+expression -> expression . PLUS expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . MINUS expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . STAR expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DIF expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . EQ expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . INF expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . INFE expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . SUP expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . SUPE expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . AND expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . OR expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . MOD expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression MOD expression . [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DIV expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DOT IDENT LPAR loption(separated_nonempty_list(COMMA,expression)) RPAR [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+mem -> expression . DOT IDENT [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+## Transitions:
+-- On SUPE shift to state 49
+-- On SUP shift to state 58
+-- On INFE shift to state 62
+-- On INF shift to state 64
+-- On DOT shift to state 51
+## Reductions:
+-- On STAR SEMI RPAR PLUS OR MOD MINUS EQ DIV DIF COMMA AND
+--   reduce production expression -> expression MOD expression
+
+State 70:
+## Known stack suffix:
+## expression DIV
+## LR(1) items:
+expression -> expression DIV . expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+## Transitions:
+-- On THIS shift to state 37
+-- On NOT shift to state 38
+-- On NEW shift to state 39
+-- On MINUS shift to state 42
+-- On LPAR shift to state 43
+-- On INT shift to state 44
+-- On IDENT shift to state 45
+-- On BOOL shift to state 46
+-- On mem shift to state 47
+-- On expression shift to state 71
+## Reductions:
+
+State 71:
+## Known stack suffix:
+## expression DIV expression
+## LR(1) items:
+expression -> expression . PLUS expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . MINUS expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . STAR expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DIF expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . EQ expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . INF expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . INFE expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . SUP expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . SUPE expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . AND expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . OR expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . MOD expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DIV expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression DIV expression . [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DOT IDENT LPAR loption(separated_nonempty_list(COMMA,expression)) RPAR [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+mem -> expression . DOT IDENT [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+## Transitions:
+-- On SUPE shift to state 49
+-- On SUP shift to state 58
+-- On INFE shift to state 62
+-- On INF shift to state 64
+-- On DOT shift to state 51
+## Reductions:
+-- On STAR SEMI RPAR PLUS OR MOD MINUS EQ DIV DIF COMMA AND
+--   reduce production expression -> expression DIV expression
+
+State 72:
+## Known stack suffix:
+## expression OR
+## LR(1) items:
+expression -> expression OR . expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+## Transitions:
+-- On THIS shift to state 37
+-- On NOT shift to state 38
+-- On NEW shift to state 39
+-- On MINUS shift to state 42
+-- On LPAR shift to state 43
+-- On INT shift to state 44
+-- On IDENT shift to state 45
+-- On BOOL shift to state 46
+-- On mem shift to state 47
+-- On expression shift to state 73
+## Reductions:
+
+State 73:
+## Known stack suffix:
+## expression OR expression
+## LR(1) items:
+expression -> expression . PLUS expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . MINUS expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . STAR expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DIF expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . EQ expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . INF expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . INFE expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . SUP expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . SUPE expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . AND expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . OR expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression OR expression . [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . MOD expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DIV expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DOT IDENT LPAR loption(separated_nonempty_list(COMMA,expression)) RPAR [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+mem -> expression . DOT IDENT [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+## Transitions:
+-- On SUPE shift to state 49
+-- On SUP shift to state 58
+-- On STAR shift to state 60
+-- On PLUS shift to state 66
+-- On MOD shift to state 68
+-- On MINUS shift to state 74
+-- On INFE shift to state 62
+-- On INF shift to state 64
+-- On EQ shift to state 76
+-- On DOT shift to state 51
+-- On DIV shift to state 70
+-- On DIF shift to state 78
+-- On AND shift to state 80
+## Reductions:
+-- On SEMI RPAR OR COMMA
+--   reduce production expression -> expression OR expression
+
+State 74:
+## Known stack suffix:
+## expression MINUS
+## LR(1) items:
+expression -> expression MINUS . expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+## Transitions:
+-- On THIS shift to state 37
+-- On NOT shift to state 38
+-- On NEW shift to state 39
+-- On MINUS shift to state 42
+-- On LPAR shift to state 43
+-- On INT shift to state 44
+-- On IDENT shift to state 45
+-- On BOOL shift to state 46
+-- On mem shift to state 47
+-- On expression shift to state 75
+## Reductions:
+
+State 75:
+## Known stack suffix:
+## expression MINUS expression
+## LR(1) items:
+expression -> expression . PLUS expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . MINUS expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression MINUS expression . [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . STAR expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DIF expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . EQ expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . INF expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . INFE expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . SUP expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . SUPE expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . AND expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . OR expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . MOD expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DIV expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DOT IDENT LPAR loption(separated_nonempty_list(COMMA,expression)) RPAR [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+mem -> expression . DOT IDENT [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+## Transitions:
+-- On SUPE shift to state 49
+-- On SUP shift to state 58
+-- On STAR shift to state 60
+-- On MOD shift to state 68
+-- On INFE shift to state 62
+-- On INF shift to state 64
+-- On DOT shift to state 51
+-- On DIV shift to state 70
+## Reductions:
+-- On SEMI RPAR PLUS OR MINUS EQ DIF COMMA AND
+--   reduce production expression -> expression MINUS expression
+
+State 76:
+## Known stack suffix:
+## expression EQ
+## LR(1) items:
+expression -> expression EQ . expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+## Transitions:
+-- On THIS shift to state 37
+-- On NOT shift to state 38
+-- On NEW shift to state 39
+-- On MINUS shift to state 42
+-- On LPAR shift to state 43
+-- On INT shift to state 44
+-- On IDENT shift to state 45
+-- On BOOL shift to state 46
+-- On mem shift to state 47
+-- On expression shift to state 77
+## Reductions:
+
+State 77:
+## Known stack suffix:
+## expression EQ expression
+## LR(1) items:
+expression -> expression . PLUS expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . MINUS expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . STAR expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DIF expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . EQ expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression EQ expression . [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . INF expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . INFE expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . SUP expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . SUPE expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . AND expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . OR expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . MOD expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DIV expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DOT IDENT LPAR loption(separated_nonempty_list(COMMA,expression)) RPAR [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+mem -> expression . DOT IDENT [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+## Transitions:
+-- On SUPE shift to state 49
+-- On SUP shift to state 58
+-- On STAR shift to state 60
+-- On PLUS shift to state 66
+-- On MOD shift to state 68
+-- On MINUS shift to state 74
+-- On INFE shift to state 62
+-- On INF shift to state 64
+-- On DOT shift to state 51
+-- On DIV shift to state 70
+## Reductions:
+-- On SEMI RPAR OR EQ DIF COMMA AND
+--   reduce production expression -> expression EQ expression
+
+State 78:
+## Known stack suffix:
+## expression DIF
+## LR(1) items:
+expression -> expression DIF . expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+## Transitions:
+-- On THIS shift to state 37
+-- On NOT shift to state 38
+-- On NEW shift to state 39
+-- On MINUS shift to state 42
+-- On LPAR shift to state 43
+-- On INT shift to state 44
+-- On IDENT shift to state 45
+-- On BOOL shift to state 46
+-- On mem shift to state 47
+-- On expression shift to state 79
+## Reductions:
+
+State 79:
+## Known stack suffix:
+## expression DIF expression
+## LR(1) items:
+expression -> expression . PLUS expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . MINUS expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . STAR expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DIF expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression DIF expression . [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . EQ expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . INF expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . INFE expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . SUP expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . SUPE expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . AND expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . OR expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . MOD expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DIV expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DOT IDENT LPAR loption(separated_nonempty_list(COMMA,expression)) RPAR [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+mem -> expression . DOT IDENT [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+## Transitions:
+-- On SUPE shift to state 49
+-- On SUP shift to state 58
+-- On STAR shift to state 60
+-- On PLUS shift to state 66
+-- On MOD shift to state 68
+-- On MINUS shift to state 74
+-- On INFE shift to state 62
+-- On INF shift to state 64
+-- On DOT shift to state 51
+-- On DIV shift to state 70
+## Reductions:
+-- On SEMI RPAR OR EQ DIF COMMA AND
+--   reduce production expression -> expression DIF expression
+
+State 80:
+## Known stack suffix:
+## expression AND
+## LR(1) items:
+expression -> expression AND . expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+## Transitions:
+-- On THIS shift to state 37
+-- On NOT shift to state 38
+-- On NEW shift to state 39
+-- On MINUS shift to state 42
+-- On LPAR shift to state 43
+-- On INT shift to state 44
+-- On IDENT shift to state 45
+-- On BOOL shift to state 46
+-- On mem shift to state 47
+-- On expression shift to state 81
+## Reductions:
+
+State 81:
+## Known stack suffix:
+## expression AND expression
+## LR(1) items:
+expression -> expression . PLUS expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . MINUS expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . STAR expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DIF expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . EQ expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . INF expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . INFE expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . SUP expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . SUPE expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . AND expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression AND expression . [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . OR expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . MOD expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DIV expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DOT IDENT LPAR loption(separated_nonempty_list(COMMA,expression)) RPAR [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+mem -> expression . DOT IDENT [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+## Transitions:
+-- On SUPE shift to state 49
+-- On SUP shift to state 58
+-- On STAR shift to state 60
+-- On PLUS shift to state 66
+-- On MOD shift to state 68
+-- On MINUS shift to state 74
+-- On INFE shift to state 62
+-- On INF shift to state 64
+-- On EQ shift to state 76
+-- On DOT shift to state 51
+-- On DIV shift to state 70
+-- On DIF shift to state 78
+## Reductions:
+-- On SEMI RPAR OR COMMA AND
+--   reduce production expression -> expression AND expression
+
+State 82:
+## Known stack suffix:
+## expression COMMA
+## LR(1) items:
+separated_nonempty_list(COMMA,expression) -> expression COMMA . separated_nonempty_list(COMMA,expression) [ RPAR ]
+## Transitions:
+-- On THIS shift to state 37
+-- On NOT shift to state 38
+-- On NEW shift to state 39
+-- On MINUS shift to state 42
+-- On LPAR shift to state 43
+-- On INT shift to state 44
+-- On IDENT shift to state 45
+-- On BOOL shift to state 46
+-- On separated_nonempty_list(COMMA,expression) shift to state 83
+-- On mem shift to state 47
+-- On expression shift to state 57
+## Reductions:
+
+State 83:
+## Known stack suffix:
+## expression COMMA separated_nonempty_list(COMMA,expression)
+## LR(1) items:
+separated_nonempty_list(COMMA,expression) -> expression COMMA separated_nonempty_list(COMMA,expression) . [ RPAR ]
+## Transitions:
+## Reductions:
+-- On RPAR
+--   reduce production separated_nonempty_list(COMMA,expression) -> expression COMMA separated_nonempty_list(COMMA,expression)
+
+State 84:
+## Known stack suffix:
+## LPAR expression RPAR
+## LR(1) items:
+expression -> LPAR expression RPAR . [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+## Transitions:
+## Reductions:
+-- On SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND
+--   reduce production expression -> LPAR expression RPAR
+
+State 85:
+## Known stack suffix:
+## MINUS expression
+## LR(1) items:
+expression -> expression . PLUS expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . MINUS expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . STAR expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DIF expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . EQ expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . INF expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . INFE expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . SUP expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . SUPE expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . AND expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . OR expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . MOD expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DIV expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> MINUS expression . [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DOT IDENT LPAR loption(separated_nonempty_list(COMMA,expression)) RPAR [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+mem -> expression . DOT IDENT [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+## Transitions:
+-- On DOT shift to state 51
+## Reductions:
+-- On SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DIV DIF COMMA AND
+--   reduce production expression -> MINUS expression
+
+State 86:
+## Known stack suffix:
+## NEW IDENT LPAR loption(separated_nonempty_list(COMMA,expression))
+## LR(1) items:
+expression -> NEW IDENT LPAR loption(separated_nonempty_list(COMMA,expression)) . RPAR [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+## Transitions:
+-- On RPAR shift to state 87
+## Reductions:
+
+State 87:
+## Known stack suffix:
+## NEW IDENT LPAR loption(separated_nonempty_list(COMMA,expression)) RPAR
+## LR(1) items:
+expression -> NEW IDENT LPAR loption(separated_nonempty_list(COMMA,expression)) RPAR . [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+## Transitions:
+## Reductions:
+-- On SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND
+--   reduce production expression -> NEW IDENT LPAR loption(separated_nonempty_list(COMMA,expression)) RPAR
+
+State 88:
+## Known stack suffix:
+## NOT expression
+## LR(1) items:
+expression -> expression . PLUS expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . MINUS expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . STAR expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DIF expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . EQ expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . INF expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . INFE expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . SUP expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . SUPE expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . AND expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . OR expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . MOD expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DIV expression [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> NOT expression . [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+expression -> expression . DOT IDENT LPAR loption(separated_nonempty_list(COMMA,expression)) RPAR [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+mem -> expression . DOT IDENT [ SUPE SUP STAR SEMI RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF COMMA AND ]
+## Transitions:
+-- On SUPE shift to state 49
+-- On SUP shift to state 58
+-- On STAR shift to state 60
+-- On PLUS shift to state 66
+-- On MOD shift to state 68
+-- On MINUS shift to state 74
+-- On INFE shift to state 62
+-- On INF shift to state 64
+-- On EQ shift to state 76
+-- On DOT shift to state 51
+-- On DIV shift to state 70
+-- On DIF shift to state 78
+## Reductions:
+-- On SEMI RPAR OR COMMA AND
+--   reduce production expression -> NOT expression
+
+State 89:
+## Known stack suffix:
+## WHILE LPAR expression
+## LR(1) items:
+expression -> expression . PLUS expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . MINUS expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . STAR expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . DIF expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . EQ expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . INF expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . INFE expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . SUP expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . SUPE expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . AND expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . OR expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . MOD expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . DIV expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . DOT IDENT LPAR loption(separated_nonempty_list(COMMA,expression)) RPAR [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+instruction -> WHILE LPAR expression . RPAR BEGIN list(instruction) END [ WHILE THIS RETURN PRINT NOT NEW MINUS LPAR INT IF IDENT END BOOL ]
+mem -> expression . DOT IDENT [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+## Transitions:
+-- On SUPE shift to state 49
+-- On SUP shift to state 58
+-- On STAR shift to state 60
+-- On RPAR shift to state 90
+-- On PLUS shift to state 66
+-- On OR shift to state 72
+-- On MOD shift to state 68
+-- On MINUS shift to state 74
+-- On INFE shift to state 62
+-- On INF shift to state 64
+-- On EQ shift to state 76
+-- On DOT shift to state 51
+-- On DIV shift to state 70
+-- On DIF shift to state 78
+-- On AND shift to state 80
+## Reductions:
+
+State 90:
+## Known stack suffix:
+## WHILE LPAR expression RPAR
+## LR(1) items:
+instruction -> WHILE LPAR expression RPAR . BEGIN list(instruction) END [ WHILE THIS RETURN PRINT NOT NEW MINUS LPAR INT IF IDENT END BOOL ]
+## Transitions:
+-- On BEGIN shift to state 91
+## Reductions:
+
+State 91:
+## Known stack suffix:
+## WHILE LPAR expression RPAR BEGIN
+## LR(1) items:
+instruction -> WHILE LPAR expression RPAR BEGIN . list(instruction) END [ WHILE THIS RETURN PRINT NOT NEW MINUS LPAR INT IF IDENT END BOOL ]
+## Transitions:
+-- On WHILE shift to state 35
+-- On THIS shift to state 37
+-- On RETURN shift to state 92
+-- On PRINT shift to state 95
+-- On NOT shift to state 38
+-- On NEW shift to state 39
+-- On MINUS shift to state 42
+-- On LPAR shift to state 43
+-- On INT shift to state 44
+-- On IF shift to state 100
+-- On IDENT shift to state 45
+-- On BOOL shift to state 46
+-- On mem shift to state 105
+-- On list(instruction) shift to state 118
+-- On instruction shift to state 115
+-- On expression shift to state 117
+## Reductions:
+-- On END
+--   reduce production list(instruction) ->
+
+State 92:
+## Known stack suffix:
+## RETURN
+## LR(1) items:
+instruction -> RETURN . expression SEMI [ WHILE THIS RETURN PRINT NOT NEW MINUS LPAR INT IF IDENT END BOOL ]
+## Transitions:
+-- On THIS shift to state 37
+-- On NOT shift to state 38
+-- On NEW shift to state 39
+-- On MINUS shift to state 42
+-- On LPAR shift to state 43
+-- On INT shift to state 44
+-- On IDENT shift to state 45
+-- On BOOL shift to state 46
+-- On mem shift to state 47
+-- On expression shift to state 93
+## Reductions:
+
+State 93:
+## Known stack suffix:
+## RETURN expression
+## LR(1) items:
+expression -> expression . PLUS expression [ SUPE SUP STAR SEMI PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . MINUS expression [ SUPE SUP STAR SEMI PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . STAR expression [ SUPE SUP STAR SEMI PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . DIF expression [ SUPE SUP STAR SEMI PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . EQ expression [ SUPE SUP STAR SEMI PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . INF expression [ SUPE SUP STAR SEMI PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . INFE expression [ SUPE SUP STAR SEMI PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . SUP expression [ SUPE SUP STAR SEMI PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . SUPE expression [ SUPE SUP STAR SEMI PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . AND expression [ SUPE SUP STAR SEMI PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . OR expression [ SUPE SUP STAR SEMI PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . MOD expression [ SUPE SUP STAR SEMI PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . DIV expression [ SUPE SUP STAR SEMI PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . DOT IDENT LPAR loption(separated_nonempty_list(COMMA,expression)) RPAR [ SUPE SUP STAR SEMI PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+instruction -> RETURN expression . SEMI [ WHILE THIS RETURN PRINT NOT NEW MINUS LPAR INT IF IDENT END BOOL ]
+mem -> expression . DOT IDENT [ SUPE SUP STAR SEMI PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+## Transitions:
+-- On SUPE shift to state 49
+-- On SUP shift to state 58
+-- On STAR shift to state 60
+-- On SEMI shift to state 94
+-- On PLUS shift to state 66
+-- On OR shift to state 72
+-- On MOD shift to state 68
+-- On MINUS shift to state 74
+-- On INFE shift to state 62
+-- On INF shift to state 64
+-- On EQ shift to state 76
+-- On DOT shift to state 51
+-- On DIV shift to state 70
+-- On DIF shift to state 78
+-- On AND shift to state 80
+## Reductions:
+
+State 94:
+## Known stack suffix:
+## RETURN expression SEMI
+## LR(1) items:
+instruction -> RETURN expression SEMI . [ WHILE THIS RETURN PRINT NOT NEW MINUS LPAR INT IF IDENT END BOOL ]
+## Transitions:
+## Reductions:
+-- On WHILE THIS RETURN PRINT NOT NEW MINUS LPAR INT IF IDENT END BOOL
+--   reduce production instruction -> RETURN expression SEMI
+
+State 95:
+## Known stack suffix:
+## PRINT
+## LR(1) items:
+instruction -> PRINT . LPAR expression RPAR SEMI [ WHILE THIS RETURN PRINT NOT NEW MINUS LPAR INT IF IDENT END BOOL ]
+## Transitions:
+-- On LPAR shift to state 96
+## Reductions:
+
+State 96:
+## Known stack suffix:
+## PRINT LPAR
+## LR(1) items:
+instruction -> PRINT LPAR . expression RPAR SEMI [ WHILE THIS RETURN PRINT NOT NEW MINUS LPAR INT IF IDENT END BOOL ]
+## Transitions:
+-- On THIS shift to state 37
+-- On NOT shift to state 38
+-- On NEW shift to state 39
+-- On MINUS shift to state 42
+-- On LPAR shift to state 43
+-- On INT shift to state 44
+-- On IDENT shift to state 45
+-- On BOOL shift to state 46
+-- On mem shift to state 47
+-- On expression shift to state 97
+## Reductions:
+
+State 97:
+## Known stack suffix:
+## PRINT LPAR expression
+## LR(1) items:
+expression -> expression . PLUS expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . MINUS expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . STAR expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . DIF expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . EQ expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . INF expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . INFE expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . SUP expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . SUPE expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . AND expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . OR expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . MOD expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . DIV expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . DOT IDENT LPAR loption(separated_nonempty_list(COMMA,expression)) RPAR [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+instruction -> PRINT LPAR expression . RPAR SEMI [ WHILE THIS RETURN PRINT NOT NEW MINUS LPAR INT IF IDENT END BOOL ]
+mem -> expression . DOT IDENT [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+## Transitions:
+-- On SUPE shift to state 49
+-- On SUP shift to state 58
+-- On STAR shift to state 60
+-- On RPAR shift to state 98
+-- On PLUS shift to state 66
+-- On OR shift to state 72
+-- On MOD shift to state 68
+-- On MINUS shift to state 74
+-- On INFE shift to state 62
+-- On INF shift to state 64
+-- On EQ shift to state 76
+-- On DOT shift to state 51
+-- On DIV shift to state 70
+-- On DIF shift to state 78
+-- On AND shift to state 80
+## Reductions:
+
+State 98:
+## Known stack suffix:
+## PRINT LPAR expression RPAR
+## LR(1) items:
+instruction -> PRINT LPAR expression RPAR . SEMI [ WHILE THIS RETURN PRINT NOT NEW MINUS LPAR INT IF IDENT END BOOL ]
+## Transitions:
+-- On SEMI shift to state 99
+## Reductions:
+
+State 99:
+## Known stack suffix:
+## PRINT LPAR expression RPAR SEMI
+## LR(1) items:
+instruction -> PRINT LPAR expression RPAR SEMI . [ WHILE THIS RETURN PRINT NOT NEW MINUS LPAR INT IF IDENT END BOOL ]
+## Transitions:
+## Reductions:
+-- On WHILE THIS RETURN PRINT NOT NEW MINUS LPAR INT IF IDENT END BOOL
+--   reduce production instruction -> PRINT LPAR expression RPAR SEMI
+
+State 100:
+## Known stack suffix:
+## IF
+## LR(1) items:
+instruction -> IF . LPAR expression RPAR BEGIN list(instruction) END ELSE BEGIN list(instruction) END [ WHILE THIS RETURN PRINT NOT NEW MINUS LPAR INT IF IDENT END BOOL ]
+## Transitions:
+-- On LPAR shift to state 101
+## Reductions:
+
+State 101:
+## Known stack suffix:
+## IF LPAR
+## LR(1) items:
+instruction -> IF LPAR . expression RPAR BEGIN list(instruction) END ELSE BEGIN list(instruction) END [ WHILE THIS RETURN PRINT NOT NEW MINUS LPAR INT IF IDENT END BOOL ]
+## Transitions:
+-- On THIS shift to state 37
+-- On NOT shift to state 38
+-- On NEW shift to state 39
+-- On MINUS shift to state 42
+-- On LPAR shift to state 43
+-- On INT shift to state 44
+-- On IDENT shift to state 45
+-- On BOOL shift to state 46
+-- On mem shift to state 47
+-- On expression shift to state 102
+## Reductions:
+
+State 102:
+## Known stack suffix:
+## IF LPAR expression
+## LR(1) items:
+expression -> expression . PLUS expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . MINUS expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . STAR expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . DIF expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . EQ expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . INF expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . INFE expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . SUP expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . SUPE expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . AND expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . OR expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . MOD expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . DIV expression [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . DOT IDENT LPAR loption(separated_nonempty_list(COMMA,expression)) RPAR [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+instruction -> IF LPAR expression . RPAR BEGIN list(instruction) END ELSE BEGIN list(instruction) END [ WHILE THIS RETURN PRINT NOT NEW MINUS LPAR INT IF IDENT END BOOL ]
+mem -> expression . DOT IDENT [ SUPE SUP STAR RPAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+## Transitions:
+-- On SUPE shift to state 49
+-- On SUP shift to state 58
+-- On STAR shift to state 60
+-- On RPAR shift to state 103
+-- On PLUS shift to state 66
+-- On OR shift to state 72
+-- On MOD shift to state 68
+-- On MINUS shift to state 74
+-- On INFE shift to state 62
+-- On INF shift to state 64
+-- On EQ shift to state 76
+-- On DOT shift to state 51
+-- On DIV shift to state 70
+-- On DIF shift to state 78
+-- On AND shift to state 80
+## Reductions:
+
+State 103:
+## Known stack suffix:
+## IF LPAR expression RPAR
+## LR(1) items:
+instruction -> IF LPAR expression RPAR . BEGIN list(instruction) END ELSE BEGIN list(instruction) END [ WHILE THIS RETURN PRINT NOT NEW MINUS LPAR INT IF IDENT END BOOL ]
+## Transitions:
+-- On BEGIN shift to state 104
+## Reductions:
+
+State 104:
+## Known stack suffix:
+## IF LPAR expression RPAR BEGIN
+## LR(1) items:
+instruction -> IF LPAR expression RPAR BEGIN . list(instruction) END ELSE BEGIN list(instruction) END [ WHILE THIS RETURN PRINT NOT NEW MINUS LPAR INT IF IDENT END BOOL ]
+## Transitions:
+-- On WHILE shift to state 35
+-- On THIS shift to state 37
+-- On RETURN shift to state 92
+-- On PRINT shift to state 95
+-- On NOT shift to state 38
+-- On NEW shift to state 39
+-- On MINUS shift to state 42
+-- On LPAR shift to state 43
+-- On INT shift to state 44
+-- On IF shift to state 100
+-- On IDENT shift to state 45
+-- On BOOL shift to state 46
+-- On mem shift to state 105
+-- On list(instruction) shift to state 109
+-- On instruction shift to state 115
+-- On expression shift to state 117
+## Reductions:
+-- On END
+--   reduce production list(instruction) ->
+
+State 105:
+## Known stack suffix:
+## mem
+## LR(1) items:
+expression -> mem . [ SUPE SUP STAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+instruction -> mem . AFF expression SEMI [ WHILE THIS RETURN PRINT NOT NEW MINUS LPAR INT IF IDENT END BOOL ]
+## Transitions:
+-- On AFF shift to state 106
+## Reductions:
+-- On SUPE SUP STAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND
+--   reduce production expression -> mem
+
+State 106:
+## Known stack suffix:
+## mem AFF
+## LR(1) items:
+instruction -> mem AFF . expression SEMI [ WHILE THIS RETURN PRINT NOT NEW MINUS LPAR INT IF IDENT END BOOL ]
+## Transitions:
+-- On THIS shift to state 37
+-- On NOT shift to state 38
+-- On NEW shift to state 39
+-- On MINUS shift to state 42
+-- On LPAR shift to state 43
+-- On INT shift to state 44
+-- On IDENT shift to state 45
+-- On BOOL shift to state 46
+-- On mem shift to state 47
+-- On expression shift to state 107
+## Reductions:
+
+State 107:
+## Known stack suffix:
+## mem AFF expression
+## LR(1) items:
+expression -> expression . PLUS expression [ SUPE SUP STAR SEMI PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . MINUS expression [ SUPE SUP STAR SEMI PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . STAR expression [ SUPE SUP STAR SEMI PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . DIF expression [ SUPE SUP STAR SEMI PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . EQ expression [ SUPE SUP STAR SEMI PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . INF expression [ SUPE SUP STAR SEMI PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . INFE expression [ SUPE SUP STAR SEMI PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . SUP expression [ SUPE SUP STAR SEMI PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . SUPE expression [ SUPE SUP STAR SEMI PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . AND expression [ SUPE SUP STAR SEMI PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . OR expression [ SUPE SUP STAR SEMI PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . MOD expression [ SUPE SUP STAR SEMI PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . DIV expression [ SUPE SUP STAR SEMI PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . DOT IDENT LPAR loption(separated_nonempty_list(COMMA,expression)) RPAR [ SUPE SUP STAR SEMI PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+instruction -> mem AFF expression . SEMI [ WHILE THIS RETURN PRINT NOT NEW MINUS LPAR INT IF IDENT END BOOL ]
+mem -> expression . DOT IDENT [ SUPE SUP STAR SEMI PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+## Transitions:
+-- On SUPE shift to state 49
+-- On SUP shift to state 58
+-- On STAR shift to state 60
+-- On SEMI shift to state 108
+-- On PLUS shift to state 66
+-- On OR shift to state 72
+-- On MOD shift to state 68
+-- On MINUS shift to state 74
+-- On INFE shift to state 62
+-- On INF shift to state 64
+-- On EQ shift to state 76
+-- On DOT shift to state 51
+-- On DIV shift to state 70
+-- On DIF shift to state 78
+-- On AND shift to state 80
+## Reductions:
+
+State 108:
+## Known stack suffix:
+## mem AFF expression SEMI
+## LR(1) items:
+instruction -> mem AFF expression SEMI . [ WHILE THIS RETURN PRINT NOT NEW MINUS LPAR INT IF IDENT END BOOL ]
+## Transitions:
+## Reductions:
+-- On WHILE THIS RETURN PRINT NOT NEW MINUS LPAR INT IF IDENT END BOOL
+--   reduce production instruction -> mem AFF expression SEMI
+
+State 109:
+## Known stack suffix:
+## IF LPAR expression RPAR BEGIN list(instruction)
+## LR(1) items:
+instruction -> IF LPAR expression RPAR BEGIN list(instruction) . END ELSE BEGIN list(instruction) END [ WHILE THIS RETURN PRINT NOT NEW MINUS LPAR INT IF IDENT END BOOL ]
+## Transitions:
+-- On END shift to state 110
+## Reductions:
+
+State 110:
+## Known stack suffix:
+## IF LPAR expression RPAR BEGIN list(instruction) END
+## LR(1) items:
+instruction -> IF LPAR expression RPAR BEGIN list(instruction) END . ELSE BEGIN list(instruction) END [ WHILE THIS RETURN PRINT NOT NEW MINUS LPAR INT IF IDENT END BOOL ]
+## Transitions:
+-- On ELSE shift to state 111
+## Reductions:
+
+State 111:
+## Known stack suffix:
+## IF LPAR expression RPAR BEGIN list(instruction) END ELSE
+## LR(1) items:
+instruction -> IF LPAR expression RPAR BEGIN list(instruction) END ELSE . BEGIN list(instruction) END [ WHILE THIS RETURN PRINT NOT NEW MINUS LPAR INT IF IDENT END BOOL ]
+## Transitions:
+-- On BEGIN shift to state 112
+## Reductions:
+
+State 112:
+## Known stack suffix:
+## IF LPAR expression RPAR BEGIN list(instruction) END ELSE BEGIN
+## LR(1) items:
+instruction -> IF LPAR expression RPAR BEGIN list(instruction) END ELSE BEGIN . list(instruction) END [ WHILE THIS RETURN PRINT NOT NEW MINUS LPAR INT IF IDENT END BOOL ]
+## Transitions:
+-- On WHILE shift to state 35
+-- On THIS shift to state 37
+-- On RETURN shift to state 92
+-- On PRINT shift to state 95
+-- On NOT shift to state 38
+-- On NEW shift to state 39
+-- On MINUS shift to state 42
+-- On LPAR shift to state 43
+-- On INT shift to state 44
+-- On IF shift to state 100
+-- On IDENT shift to state 45
+-- On BOOL shift to state 46
+-- On mem shift to state 105
+-- On list(instruction) shift to state 113
+-- On instruction shift to state 115
+-- On expression shift to state 117
+## Reductions:
+-- On END
+--   reduce production list(instruction) ->
+
+State 113:
+## Known stack suffix:
+## IF LPAR expression RPAR BEGIN list(instruction) END ELSE BEGIN list(instruction)
+## LR(1) items:
+instruction -> IF LPAR expression RPAR BEGIN list(instruction) END ELSE BEGIN list(instruction) . END [ WHILE THIS RETURN PRINT NOT NEW MINUS LPAR INT IF IDENT END BOOL ]
+## Transitions:
+-- On END shift to state 114
+## Reductions:
+
+State 114:
+## Known stack suffix:
+## IF LPAR expression RPAR BEGIN list(instruction) END ELSE BEGIN list(instruction) END
+## LR(1) items:
+instruction -> IF LPAR expression RPAR BEGIN list(instruction) END ELSE BEGIN list(instruction) END . [ WHILE THIS RETURN PRINT NOT NEW MINUS LPAR INT IF IDENT END BOOL ]
+## Transitions:
+## Reductions:
+-- On WHILE THIS RETURN PRINT NOT NEW MINUS LPAR INT IF IDENT END BOOL
+--   reduce production instruction -> IF LPAR expression RPAR BEGIN list(instruction) END ELSE BEGIN list(instruction) END
+
+State 115:
+## Known stack suffix:
+## instruction
+## LR(1) items:
+list(instruction) -> instruction . list(instruction) [ END ]
+## Transitions:
+-- On WHILE shift to state 35
+-- On THIS shift to state 37
+-- On RETURN shift to state 92
+-- On PRINT shift to state 95
+-- On NOT shift to state 38
+-- On NEW shift to state 39
+-- On MINUS shift to state 42
+-- On LPAR shift to state 43
+-- On INT shift to state 44
+-- On IF shift to state 100
+-- On IDENT shift to state 45
+-- On BOOL shift to state 46
+-- On mem shift to state 105
+-- On list(instruction) shift to state 116
+-- On instruction shift to state 115
+-- On expression shift to state 117
+## Reductions:
+-- On END
+--   reduce production list(instruction) ->
+
+State 116:
+## Known stack suffix:
+## instruction list(instruction)
+## LR(1) items:
+list(instruction) -> instruction list(instruction) . [ END ]
+## Transitions:
+## Reductions:
+-- On END
+--   reduce production list(instruction) -> instruction list(instruction)
+
+State 117:
+## Known stack suffix:
+## expression
+## LR(1) items:
+expression -> expression . PLUS expression [ SUPE SUP STAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . MINUS expression [ SUPE SUP STAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . STAR expression [ SUPE SUP STAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . DIF expression [ SUPE SUP STAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . EQ expression [ SUPE SUP STAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . INF expression [ SUPE SUP STAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . INFE expression [ SUPE SUP STAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . SUP expression [ SUPE SUP STAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . SUPE expression [ SUPE SUP STAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . AND expression [ SUPE SUP STAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . OR expression [ SUPE SUP STAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . MOD expression [ SUPE SUP STAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . DIV expression [ SUPE SUP STAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+expression -> expression . DOT IDENT LPAR loption(separated_nonempty_list(COMMA,expression)) RPAR [ SUPE SUP STAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND ]
+mem -> expression . DOT IDENT [ SUPE SUP STAR PLUS OR MOD MINUS INFE INF EQ DOT DIV DIF AND AFF ]
+## Transitions:
+-- On SUPE shift to state 49
+-- On SUP shift to state 58
+-- On STAR shift to state 60
+-- On PLUS shift to state 66
+-- On OR shift to state 72
+-- On MOD shift to state 68
+-- On MINUS shift to state 74
+-- On INFE shift to state 62
+-- On INF shift to state 64
+-- On EQ shift to state 76
+-- On DOT shift to state 51
+-- On DIV shift to state 70
+-- On DIF shift to state 78
+-- On AND shift to state 80
+## Reductions:
+
+State 118:
+## Known stack suffix:
+## WHILE LPAR expression RPAR BEGIN list(instruction)
+## LR(1) items:
+instruction -> WHILE LPAR expression RPAR BEGIN list(instruction) . END [ WHILE THIS RETURN PRINT NOT NEW MINUS LPAR INT IF IDENT END BOOL ]
+## Transitions:
+-- On END shift to state 119
+## Reductions:
+
+State 119:
+## Known stack suffix:
+## WHILE LPAR expression RPAR BEGIN list(instruction) END
+## LR(1) items:
+instruction -> WHILE LPAR expression RPAR BEGIN list(instruction) END . [ WHILE THIS RETURN PRINT NOT NEW MINUS LPAR INT IF IDENT END BOOL ]
+## Transitions:
+## Reductions:
+-- On WHILE THIS RETURN PRINT NOT NEW MINUS LPAR INT IF IDENT END BOOL
+--   reduce production instruction -> WHILE LPAR expression RPAR BEGIN list(instruction) END
+
+State 120:
+## Known stack suffix:
+## MET typ IDENT LPAR loption(separated_nonempty_list(COMMA,typed_id)) RPAR BEGIN list(vardef) list(instruction)
+## LR(1) items:
+method_ -> MET typ IDENT LPAR loption(separated_nonempty_list(COMMA,typed_id)) RPAR BEGIN list(vardef) list(instruction) . END [ PUBLIC PROTECTED PRIVATE MET END ATT ]
+## Transitions:
+-- On END shift to state 121
+## Reductions:
+
+State 121:
+## Known stack suffix:
+## MET typ IDENT LPAR loption(separated_nonempty_list(COMMA,typed_id)) RPAR BEGIN list(vardef) list(instruction) END
+## LR(1) items:
+method_ -> MET typ IDENT LPAR loption(separated_nonempty_list(COMMA,typed_id)) RPAR BEGIN list(vardef) list(instruction) END . [ PUBLIC PROTECTED PRIVATE MET END ATT ]
+## Transitions:
+## Reductions:
+-- On PUBLIC PROTECTED PRIVATE MET END ATT
+--   reduce production method_ -> MET typ IDENT LPAR loption(separated_nonempty_list(COMMA,typed_id)) RPAR BEGIN list(vardef) list(instruction) END
+
+State 122:
+## Known stack suffix:
+## ATT
+## LR(1) items:
+attribute -> ATT . typ IDENT SEMI [ PUBLIC PROTECTED PRIVATE MET END ATT ]
+attribute -> ATT . FINAL typ IDENT SEMI [ PUBLIC PROTECTED PRIVATE MET END ATT ]
+## Transitions:
+-- On TVOID shift to state 2
+-- On TINT shift to state 3
+-- On TBOOL shift to state 4
+-- On IDENT shift to state 5
+-- On FINAL shift to state 123
+-- On typ shift to state 127
+## Reductions:
+
+State 123:
+## Known stack suffix:
+## ATT FINAL
+## LR(1) items:
+attribute -> ATT FINAL . typ IDENT SEMI [ PUBLIC PROTECTED PRIVATE MET END ATT ]
+## Transitions:
+-- On TVOID shift to state 2
+-- On TINT shift to state 3
+-- On TBOOL shift to state 4
+-- On IDENT shift to state 5
+-- On typ shift to state 124
+## Reductions:
+
+State 124:
+## Known stack suffix:
+## ATT FINAL typ
+## LR(1) items:
+attribute -> ATT FINAL typ . IDENT SEMI [ PUBLIC PROTECTED PRIVATE MET END ATT ]
+## Transitions:
+-- On IDENT shift to state 125
+## Reductions:
+
+State 125:
+## Known stack suffix:
+## ATT FINAL typ IDENT
+## LR(1) items:
+attribute -> ATT FINAL typ IDENT . SEMI [ PUBLIC PROTECTED PRIVATE MET END ATT ]
+## Transitions:
+-- On SEMI shift to state 126
+## Reductions:
+
+State 126:
+## Known stack suffix:
+## ATT FINAL typ IDENT SEMI
+## LR(1) items:
+attribute -> ATT FINAL typ IDENT SEMI . [ PUBLIC PROTECTED PRIVATE MET END ATT ]
+## Transitions:
+## Reductions:
+-- On PUBLIC PROTECTED PRIVATE MET END ATT
+--   reduce production attribute -> ATT FINAL typ IDENT SEMI
+
+State 127:
+## Known stack suffix:
+## ATT typ
+## LR(1) items:
+attribute -> ATT typ . IDENT SEMI [ PUBLIC PROTECTED PRIVATE MET END ATT ]
+## Transitions:
+-- On IDENT shift to state 128
+## Reductions:
+
+State 128:
+## Known stack suffix:
+## ATT typ IDENT
+## LR(1) items:
+attribute -> ATT typ IDENT . SEMI [ PUBLIC PROTECTED PRIVATE MET END ATT ]
+## Transitions:
+-- On SEMI shift to state 129
+## Reductions:
+
+State 129:
+## Known stack suffix:
+## ATT typ IDENT SEMI
+## LR(1) items:
+attribute -> ATT typ IDENT SEMI . [ PUBLIC PROTECTED PRIVATE MET END ATT ]
+## Transitions:
+## Reductions:
+-- On PUBLIC PROTECTED PRIVATE MET END ATT
+--   reduce production attribute -> ATT typ IDENT SEMI
+
+State 130:
+## Known stack suffix:
+## method_
+## LR(1) items:
+metatt -> method_ . [ PUBLIC PROTECTED PRIVATE MET END ATT ]
+## Transitions:
+## Reductions:
+-- On PUBLIC PROTECTED PRIVATE MET END ATT
+--   reduce production metatt -> method_
+
+State 131:
+## Known stack suffix:
+## metatt
+## LR(1) items:
+list(metatt) -> metatt . list(metatt) [ END ]
+## Transitions:
+-- On PUBLIC shift to state 18
+-- On PROTECTED shift to state 19
+-- On PRIVATE shift to state 20
+-- On MET shift to state 21
+-- On ATT shift to state 122
+-- On method_ shift to state 130
+-- On metatt shift to state 131
+-- On list(metatt) shift to state 132
+-- On attribute shift to state 133
+-- On access shift to state 134
+## Reductions:
+-- On END
+--   reduce production list(metatt) ->
+
+State 132:
+## Known stack suffix:
+## metatt list(metatt)
+## LR(1) items:
+list(metatt) -> metatt list(metatt) . [ END ]
+## Transitions:
+## Reductions:
+-- On END
+--   reduce production list(metatt) -> metatt list(metatt)
+
+State 133:
+## Known stack suffix:
+## attribute
+## LR(1) items:
+metatt -> attribute . [ PUBLIC PROTECTED PRIVATE MET END ATT ]
+## Transitions:
+## Reductions:
+-- On PUBLIC PROTECTED PRIVATE MET END ATT
+--   reduce production metatt -> attribute
+
+State 134:
+## Known stack suffix:
+## access
+## LR(1) items:
+attribute -> access . ATT typ IDENT SEMI [ PUBLIC PROTECTED PRIVATE MET END ATT ]
+attribute -> access . ATT FINAL typ IDENT SEMI [ PUBLIC PROTECTED PRIVATE MET END ATT ]
+method_ -> access . MET typ IDENT LPAR loption(separated_nonempty_list(COMMA,typed_id)) RPAR BEGIN list(vardef) list(instruction) END [ PUBLIC PROTECTED PRIVATE MET END ATT ]
+## Transitions:
+-- On MET shift to state 135
+-- On ATT shift to state 145
+## Reductions:
+
+State 135:
+## Known stack suffix:
+## access MET
+## LR(1) items:
+method_ -> access MET . typ IDENT LPAR loption(separated_nonempty_list(COMMA,typed_id)) RPAR BEGIN list(vardef) list(instruction) END [ PUBLIC PROTECTED PRIVATE MET END ATT ]
+## Transitions:
+-- On TVOID shift to state 2
+-- On TINT shift to state 3
+-- On TBOOL shift to state 4
+-- On IDENT shift to state 5
+-- On typ shift to state 136
+## Reductions:
+
+State 136:
+## Known stack suffix:
+## access MET typ
+## LR(1) items:
+method_ -> access MET typ . IDENT LPAR loption(separated_nonempty_list(COMMA,typed_id)) RPAR BEGIN list(vardef) list(instruction) END [ PUBLIC PROTECTED PRIVATE MET END ATT ]
+## Transitions:
+-- On IDENT shift to state 137
+## Reductions:
+
+State 137:
+## Known stack suffix:
+## access MET typ IDENT
+## LR(1) items:
+method_ -> access MET typ IDENT . LPAR loption(separated_nonempty_list(COMMA,typed_id)) RPAR BEGIN list(vardef) list(instruction) END [ PUBLIC PROTECTED PRIVATE MET END ATT ]
+## Transitions:
+-- On LPAR shift to state 138
+## Reductions:
+
+State 138:
+## Known stack suffix:
+## access MET typ IDENT LPAR
+## LR(1) items:
+method_ -> access MET typ IDENT LPAR . loption(separated_nonempty_list(COMMA,typed_id)) RPAR BEGIN list(vardef) list(instruction) END [ PUBLIC PROTECTED PRIVATE MET END ATT ]
+## Transitions:
+-- On TVOID shift to state 2
+-- On TINT shift to state 3
+-- On TBOOL shift to state 4
+-- On IDENT shift to state 5
+-- On typed_id shift to state 25
+-- On typ shift to state 27
+-- On separated_nonempty_list(COMMA,typed_id) shift to state 30
+-- On loption(separated_nonempty_list(COMMA,typed_id)) shift to state 139
+## Reductions:
+-- On RPAR
+--   reduce production loption(separated_nonempty_list(COMMA,typed_id)) ->
+
+State 139:
+## Known stack suffix:
+## access MET typ IDENT LPAR loption(separated_nonempty_list(COMMA,typed_id))
+## LR(1) items:
+method_ -> access MET typ IDENT LPAR loption(separated_nonempty_list(COMMA,typed_id)) . RPAR BEGIN list(vardef) list(instruction) END [ PUBLIC PROTECTED PRIVATE MET END ATT ]
+## Transitions:
+-- On RPAR shift to state 140
+## Reductions:
+
+State 140:
+## Known stack suffix:
+## access MET typ IDENT LPAR loption(separated_nonempty_list(COMMA,typed_id)) RPAR
+## LR(1) items:
+method_ -> access MET typ IDENT LPAR loption(separated_nonempty_list(COMMA,typed_id)) RPAR . BEGIN list(vardef) list(instruction) END [ PUBLIC PROTECTED PRIVATE MET END ATT ]
+## Transitions:
+-- On BEGIN shift to state 141
+## Reductions:
+
+State 141:
+## Known stack suffix:
+## access MET typ IDENT LPAR loption(separated_nonempty_list(COMMA,typed_id)) RPAR BEGIN
+## LR(1) items:
+method_ -> access MET typ IDENT LPAR loption(separated_nonempty_list(COMMA,typed_id)) RPAR BEGIN . list(vardef) list(instruction) END [ PUBLIC PROTECTED PRIVATE MET END ATT ]
+## Transitions:
+-- On VAR shift to state 1
+-- On vardef shift to state 9
+-- On list(vardef) shift to state 142
+## Reductions:
+-- On WHILE THIS RETURN PRINT NOT NEW MINUS LPAR INT IF IDENT END BOOL
+--   reduce production list(vardef) ->
+
+State 142:
+## Known stack suffix:
+## access MET typ IDENT LPAR loption(separated_nonempty_list(COMMA,typed_id)) RPAR BEGIN list(vardef)
+## LR(1) items:
+method_ -> access MET typ IDENT LPAR loption(separated_nonempty_list(COMMA,typed_id)) RPAR BEGIN list(vardef) . list(instruction) END [ PUBLIC PROTECTED PRIVATE MET END ATT ]
+## Transitions:
+-- On WHILE shift to state 35
+-- On THIS shift to state 37
+-- On RETURN shift to state 92
+-- On PRINT shift to state 95
+-- On NOT shift to state 38
+-- On NEW shift to state 39
+-- On MINUS shift to state 42
+-- On LPAR shift to state 43
+-- On INT shift to state 44
+-- On IF shift to state 100
+-- On IDENT shift to state 45
+-- On BOOL shift to state 46
+-- On mem shift to state 105
+-- On list(instruction) shift to state 143
+-- On instruction shift to state 115
+-- On expression shift to state 117
+## Reductions:
+-- On END
+--   reduce production list(instruction) ->
+
+State 143:
+## Known stack suffix:
+## access MET typ IDENT LPAR loption(separated_nonempty_list(COMMA,typed_id)) RPAR BEGIN list(vardef) list(instruction)
+## LR(1) items:
+method_ -> access MET typ IDENT LPAR loption(separated_nonempty_list(COMMA,typed_id)) RPAR BEGIN list(vardef) list(instruction) . END [ PUBLIC PROTECTED PRIVATE MET END ATT ]
+## Transitions:
+-- On END shift to state 144
+## Reductions:
+
+State 144:
+## Known stack suffix:
+## access MET typ IDENT LPAR loption(separated_nonempty_list(COMMA,typed_id)) RPAR BEGIN list(vardef) list(instruction) END
+## LR(1) items:
+method_ -> access MET typ IDENT LPAR loption(separated_nonempty_list(COMMA,typed_id)) RPAR BEGIN list(vardef) list(instruction) END . [ PUBLIC PROTECTED PRIVATE MET END ATT ]
+## Transitions:
+## Reductions:
+-- On PUBLIC PROTECTED PRIVATE MET END ATT
+--   reduce production method_ -> access MET typ IDENT LPAR loption(separated_nonempty_list(COMMA,typed_id)) RPAR BEGIN list(vardef) list(instruction) END
+
+State 145:
+## Known stack suffix:
+## access ATT
+## LR(1) items:
+attribute -> access ATT . typ IDENT SEMI [ PUBLIC PROTECTED PRIVATE MET END ATT ]
+attribute -> access ATT . FINAL typ IDENT SEMI [ PUBLIC PROTECTED PRIVATE MET END ATT ]
+## Transitions:
+-- On TVOID shift to state 2
+-- On TINT shift to state 3
+-- On TBOOL shift to state 4
+-- On IDENT shift to state 5
+-- On FINAL shift to state 146
+-- On typ shift to state 150
+## Reductions:
+
+State 146:
+## Known stack suffix:
+## access ATT FINAL
+## LR(1) items:
+attribute -> access ATT FINAL . typ IDENT SEMI [ PUBLIC PROTECTED PRIVATE MET END ATT ]
+## Transitions:
+-- On TVOID shift to state 2
+-- On TINT shift to state 3
+-- On TBOOL shift to state 4
+-- On IDENT shift to state 5
+-- On typ shift to state 147
+## Reductions:
+
+State 147:
+## Known stack suffix:
+## access ATT FINAL typ
+## LR(1) items:
+attribute -> access ATT FINAL typ . IDENT SEMI [ PUBLIC PROTECTED PRIVATE MET END ATT ]
+## Transitions:
+-- On IDENT shift to state 148
+## Reductions:
+
+State 148:
+## Known stack suffix:
+## access ATT FINAL typ IDENT
+## LR(1) items:
+attribute -> access ATT FINAL typ IDENT . SEMI [ PUBLIC PROTECTED PRIVATE MET END ATT ]
+## Transitions:
+-- On SEMI shift to state 149
+## Reductions:
+
+State 149:
+## Known stack suffix:
+## access ATT FINAL typ IDENT SEMI
+## LR(1) items:
+attribute -> access ATT FINAL typ IDENT SEMI . [ PUBLIC PROTECTED PRIVATE MET END ATT ]
+## Transitions:
+## Reductions:
+-- On PUBLIC PROTECTED PRIVATE MET END ATT
+--   reduce production attribute -> access ATT FINAL typ IDENT SEMI
+
+State 150:
+## Known stack suffix:
+## access ATT typ
+## LR(1) items:
+attribute -> access ATT typ . IDENT SEMI [ PUBLIC PROTECTED PRIVATE MET END ATT ]
+## Transitions:
+-- On IDENT shift to state 151
+## Reductions:
+
+State 151:
+## Known stack suffix:
+## access ATT typ IDENT
+## LR(1) items:
+attribute -> access ATT typ IDENT . SEMI [ PUBLIC PROTECTED PRIVATE MET END ATT ]
+## Transitions:
+-- On SEMI shift to state 152
+## Reductions:
+
+State 152:
+## Known stack suffix:
+## access ATT typ IDENT SEMI
+## LR(1) items:
+attribute -> access ATT typ IDENT SEMI . [ PUBLIC PROTECTED PRIVATE MET END ATT ]
+## Transitions:
+## Reductions:
+-- On PUBLIC PROTECTED PRIVATE MET END ATT
+--   reduce production attribute -> access ATT typ IDENT SEMI
+
+State 153:
+## Known stack suffix:
+## CLASS IDENT EXT IDENT BEGIN list(metatt)
+## LR(1) items:
+classdef -> CLASS IDENT EXT IDENT BEGIN list(metatt) . END [ MAIN CLASS ]
+## Transitions:
+-- On END shift to state 154
+## Reductions:
+
+State 154:
+## Known stack suffix:
+## CLASS IDENT EXT IDENT BEGIN list(metatt) END
+## LR(1) items:
+classdef -> CLASS IDENT EXT IDENT BEGIN list(metatt) END . [ MAIN CLASS ]
+## Transitions:
+## Reductions:
+-- On MAIN CLASS
+--   reduce production classdef -> CLASS IDENT EXT IDENT BEGIN list(metatt) END
+
+State 155:
+## Known stack suffix:
+## CLASS IDENT BEGIN
+## LR(1) items:
+classdef -> CLASS IDENT BEGIN . list(metatt) END [ MAIN CLASS ]
+## Transitions:
+-- On PUBLIC shift to state 18
+-- On PROTECTED shift to state 19
+-- On PRIVATE shift to state 20
+-- On MET shift to state 21
+-- On ATT shift to state 122
+-- On method_ shift to state 130
+-- On metatt shift to state 131
+-- On list(metatt) shift to state 156
+-- On attribute shift to state 133
+-- On access shift to state 134
+## Reductions:
+-- On END
+--   reduce production list(metatt) ->
+
+State 156:
+## Known stack suffix:
+## CLASS IDENT BEGIN list(metatt)
+## LR(1) items:
+classdef -> CLASS IDENT BEGIN list(metatt) . END [ MAIN CLASS ]
+## Transitions:
+-- On END shift to state 157
+## Reductions:
+
+State 157:
+## Known stack suffix:
+## CLASS IDENT BEGIN list(metatt) END
+## LR(1) items:
+classdef -> CLASS IDENT BEGIN list(metatt) END . [ MAIN CLASS ]
+## Transitions:
+## Reductions:
+-- On MAIN CLASS
+--   reduce production classdef -> CLASS IDENT BEGIN list(metatt) END
+
+State 158:
+## Known stack suffix:
+## list(vardef) list(classdef)
+## LR(1) items:
+program -> list(vardef) list(classdef) . MAIN BEGIN list(instruction) END EOF [ # ]
+## Transitions:
+-- On MAIN shift to state 159
+## Reductions:
+
+State 159:
+## Known stack suffix:
+## list(vardef) list(classdef) MAIN
+## LR(1) items:
+program -> list(vardef) list(classdef) MAIN . BEGIN list(instruction) END EOF [ # ]
+## Transitions:
+-- On BEGIN shift to state 160
+## Reductions:
+
+State 160:
+## Known stack suffix:
+## list(vardef) list(classdef) MAIN BEGIN
+## LR(1) items:
+program -> list(vardef) list(classdef) MAIN BEGIN . list(instruction) END EOF [ # ]
+## Transitions:
+-- On WHILE shift to state 35
+-- On THIS shift to state 37
+-- On RETURN shift to state 92
+-- On PRINT shift to state 95
+-- On NOT shift to state 38
+-- On NEW shift to state 39
+-- On MINUS shift to state 42
+-- On LPAR shift to state 43
+-- On INT shift to state 44
+-- On IF shift to state 100
+-- On IDENT shift to state 45
+-- On BOOL shift to state 46
+-- On mem shift to state 105
+-- On list(instruction) shift to state 161
+-- On instruction shift to state 115
+-- On expression shift to state 117
+## Reductions:
+-- On END
+--   reduce production list(instruction) ->
+
+State 161:
+## Known stack suffix:
+## list(vardef) list(classdef) MAIN BEGIN list(instruction)
+## LR(1) items:
+program -> list(vardef) list(classdef) MAIN BEGIN list(instruction) . END EOF [ # ]
+## Transitions:
+-- On END shift to state 162
+## Reductions:
+
+State 162:
+## Known stack suffix:
+## list(vardef) list(classdef) MAIN BEGIN list(instruction) END
+## LR(1) items:
+program -> list(vardef) list(classdef) MAIN BEGIN list(instruction) END . EOF [ # ]
+## Transitions:
+-- On EOF shift to state 163
+## Reductions:
+
+State 163:
+## Known stack suffix:
+## list(vardef) list(classdef) MAIN BEGIN list(instruction) END EOF
+## LR(1) items:
+program -> list(vardef) list(classdef) MAIN BEGIN list(instruction) END EOF . [ # ]
+## Transitions:
+## Reductions:
+-- On #
+--   reduce production program -> list(vardef) list(classdef) MAIN BEGIN list(instruction) END EOF
+
+State 164:
+## Known stack suffix:
+## classdef
+## LR(1) items:
+list(classdef) -> classdef . list(classdef) [ MAIN ]
+## Transitions:
+-- On CLASS shift to state 13
+-- On list(classdef) shift to state 165
+-- On classdef shift to state 164
+## Reductions:
+-- On MAIN
+--   reduce production list(classdef) ->
+
+State 165:
+## Known stack suffix:
+## classdef list(classdef)
+## LR(1) items:
+list(classdef) -> classdef list(classdef) . [ MAIN ]
+## Transitions:
+## Reductions:
+-- On MAIN
+--   reduce production list(classdef) -> classdef list(classdef)
+

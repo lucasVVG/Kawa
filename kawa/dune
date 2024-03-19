@@ -1,0 +1,10 @@
+(ocamllex
+ (modules kawalexer))
+(menhir
+ (modules kawaparser)
+ (flags ())
+ (infer true))
+(executable
+ (name kawai)
+ (promote (until-clean))
+ (flags ()))
